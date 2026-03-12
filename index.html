@@ -3,64 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>今日の星座占い</title>
+  <title>🔮 今日の星座占い ✨</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header>
       <h1>🔮 今日の星座占い ✨</h1>
-      <p class="date" id="today"></p>
+      <p class="date" id="today-date"></p>
     </header>
 
-    <section class="sign-grid">
-      <button class="sign-btn" data-sign="aries">♈ 牡羊座</button>
-      <button class="sign-btn" data-sign="taurus">♉ 牡牛座</button>
-      <button class="sign-btn" data-sign="gemini">♊ 双子座</button>
-      <button class="sign-btn" data-sign="cancer">♋ 蟹座</button>
-      <button class="sign-btn" data-sign="leo">♌ 獅子座</button>
-      <button class="sign-btn" data-sign="virgo">♍ 乙女座</button>
-      <button class="sign-btn" data-sign="libra">♎ 天秤座</button>
-      <button class="sign-btn" data-sign="scorpio">♏ 蠍座</button>
-      <button class="sign-btn" data-sign="sagittarius">♐ 射手座</button>
-      <button class="sign-btn" data-sign="capricorn">♑ 山羊座</button>
-      <button class="sign-btn" data-sign="aquarius">♒ 水瓶座</button>
-      <button class="sign-btn" data-sign="pisces">♓ 魚座</button>
+    <section class="sign-selector">
+      <p class="label">💫 星座を選んでね 💫</p>
+      <div class="sign-grid" id="sign-grid"></div>
     </section>
 
     <section class="result" id="result" hidden>
       <div class="result-header">
-        <span class="result-sign" id="result-sign"></span>
-        <span class="result-date" id="result-date"></span>
-      </div>
-
-      <div class="overall">
-        <div class="overall-label">総合運</div>
-        <div class="stars" id="overall-stars"></div>
-        <p class="overall-message" id="overall-message"></p>
-      </div>
-
-      <div class="categories">
-        <div class="category">
-          <div class="category-label">恋愛運</div>
-          <div class="stars" id="love-stars"></div>
-          <p class="category-message" id="love-message"></p>
-        </div>
-        <div class="category">
-          <div class="category-label">仕事運</div>
-          <div class="stars" id="work-stars"></div>
-          <p class="category-message" id="work-message"></p>
-        </div>
-        <div class="category">
-          <div class="category-label">金運</div>
-          <div class="stars" id="money-stars"></div>
-          <p class="category-message" id="money-message"></p>
+        <span class="result-emoji" id="result-emoji"></span>
+        <div>
+          <h2 id="result-sign-name"></h2>
+          <p class="result-sub">今日の運勢</p>
         </div>
       </div>
 
-      <div class="lucky">
-        <span>ラッキーカラー：<strong id="lucky-color"></strong></span>
-        <span>ラッキーナンバー：<strong id="lucky-number"></strong></span>
+      <div class="cards">
+        <div class="card card-overall">
+          <div class="card-top">
+            <span class="card-emoji">🌟</span>
+            <span class="card-label">総合運</span>
+          </div>
+          <div class="stars" id="stars-overall"></div>
+          <p class="card-text" id="text-overall"></p>
+        </div>
+        <div class="card card-love">
+          <div class="card-top">
+            <span class="card-emoji">💕</span>
+            <span class="card-label">恋愛運</span>
+          </div>
+          <div class="stars" id="stars-love"></div>
+          <p class="card-text" id="text-love"></p>
+        </div>
+        <div class="card card-work">
+          <div class="card-top">
+            <span class="card-emoji">💼</span>
+            <span class="card-label">仕事運</span>
+          </div>
+          <div class="stars" id="stars-work"></div>
+          <p class="card-text" id="text-work"></p>
+        </div>
+        <div class="card card-money">
+          <div class="card-top">
+            <span class="card-emoji">🍀</span>
+            <span class="card-label">金運</span>
+          </div>
+          <div class="stars" id="stars-money"></div>
+          <p class="card-text" id="text-money"></p>
+        </div>
+      </div>
+
+      <div class="lucky-box">
+        <span class="lucky-title">🌈 ラッキーカラー</span>
+        <span class="lucky-value" id="lucky-color"></span>
+      </div>
+      <div class="lucky-box">
+        <span class="lucky-title">🔢 ラッキーナンバー</span>
+        <span class="lucky-value" id="lucky-number"></span>
       </div>
     </section>
   </div>

@@ -5,169 +5,225 @@
 }
 
 body {
-  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-  background: #fff0f3;
-  color: #333;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  background: linear-gradient(135deg, #ffe4f0 0%, #fdf0f8 50%, #ffeaf4 100%);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 48px 16px;
+  color: #5a3a4a;
 }
 
 .container {
-  width: 100%;
-  max-width: 560px;
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
 }
 
 /* Header */
 header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 h1 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: #222;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #c0547a;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(192, 84, 122, 0.15);
 }
 
 .date {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 0.8rem;
-  color: #999;
+  color: #c9889f;
+}
+
+/* Sign selector */
+.sign-selector {
+  margin-bottom: 36px;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: #c0547a;
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 600;
   letter-spacing: 0.05em;
 }
 
-/* Sign grid */
 .sign-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-bottom: 40px;
+  gap: 10px;
 }
 
 .sign-btn {
   background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 12px 4px;
-  font-size: 0.75rem;
-  color: #444;
+  border: 2px solid #f5c0d4;
+  border-radius: 16px;
+  padding: 14px 6px;
   cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
-  letter-spacing: 0.02em;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(192, 84, 122, 0.08);
 }
 
 .sign-btn:hover {
-  border-color: #aaa;
-  background: #fafafa;
+  border-color: #e8799c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(192, 84, 122, 0.18);
 }
 
 .sign-btn.active {
-  border-color: #555;
-  background: #222;
+  background: linear-gradient(135deg, #f48fb1, #e91e8c);
+  border-color: #e91e8c;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 30, 140, 0.3);
+}
+
+.sign-btn .btn-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.sign-btn .btn-name {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #c0547a;
+}
+
+.sign-btn.active .btn-name {
   color: #fff;
 }
 
 /* Result */
 .result {
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  padding: 32px 28px;
-  animation: fadeIn 0.3s ease;
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .result-header {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 28px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px 24px;
+  border: 2px solid #f5c0d4;
+  box-shadow: 0 4px 16px rgba(192, 84, 122, 0.1);
 }
 
-.result-sign {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #222;
+.result-emoji {
+  font-size: 3rem;
+  line-height: 1;
 }
 
-.result-date {
+h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #c0547a;
+}
+
+.result-sub {
   font-size: 0.75rem;
-  color: #bbb;
+  color: #c9889f;
+  margin-top: 2px;
 }
 
-/* Overall */
-.overall {
-  margin-bottom: 28px;
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
-.overall-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  color: #999;
-  text-transform: uppercase;
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px 16px;
+  border: 2px solid #f5c0d4;
+  box-shadow: 0 3px 12px rgba(192, 84, 122, 0.08);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 8px;
 }
 
-.stars {
+.card-emoji {
   font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
-  color: #333;
 }
 
-.overall-message {
-  font-size: 0.88rem;
-  line-height: 1.75;
-  color: #555;
-}
-
-/* Categories */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
-  padding: 20px 0;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.category-label {
+.card-label {
   font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: #aaa;
-  margin-bottom: 6px;
+  font-weight: 700;
+  color: #c0547a;
+  letter-spacing: 0.06em;
 }
 
-.category .stars {
-  font-size: 0.9rem;
-  margin-bottom: 6px;
+.stars {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
-.category-message {
-  font-size: 0.75rem;
-  line-height: 1.6;
-  color: #777;
+.card-text {
+  font-size: 0.76rem;
+  line-height: 1.7;
+  color: #7a5060;
 }
 
-/* Lucky */
-.lucky {
+/* Lucky boxes */
+.lucky-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 20px;
+  border: 2px solid #f5c0d4;
   display: flex;
-  gap: 24px;
-  font-size: 0.78rem;
-  color: #888;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(192, 84, 122, 0.07);
 }
 
-.lucky strong {
-  color: #444;
-  font-weight: 500;
+.lucky-title {
+  font-size: 0.78rem;
+  color: #c9889f;
+  font-weight: 600;
+}
+
+.lucky-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #c0547a;
+  background: linear-gradient(135deg, #fce4ec, #ffeaf4);
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid #f5c0d4;
+}
+
+@media (max-width: 420px) {
+  .sign-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
 }
