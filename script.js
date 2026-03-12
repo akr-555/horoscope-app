@@ -1,144 +1,256 @@
-const SIGNS = {
-  aries:       '♈ 牡羊座',
-  taurus:      '♉ 牡牛座',
-  gemini:      '♊ 双子座',
-  cancer:      '♋ 蟹座',
-  leo:         '♌ 獅子座',
-  virgo:       '♍ 乙女座',
-  libra:       '♎ 天秤座',
-  scorpio:     '♏ 蠍座',
-  sagittarius: '♐ 射手座',
-  capricorn:   '♑ 山羊座',
-  aquarius:    '♒ 水瓶座',
-  pisces:      '♓ 魚座',
+const SIGNS = [
+  { ja: '牡羊座', en: 'Aries',       icon: '♈' },
+  { ja: '牡牛座', en: 'Taurus',      icon: '♉' },
+  { ja: '双子座', en: 'Gemini',      icon: '♊' },
+  { ja: '蟹座',   en: 'Cancer',      icon: '♋' },
+  { ja: '獅子座', en: 'Leo',         icon: '♌' },
+  { ja: '乙女座', en: 'Virgo',       icon: '♍' },
+  { ja: '天秤座', en: 'Libra',       icon: '♎' },
+  { ja: '蠍座',   en: 'Scorpio',     icon: '♏' },
+  { ja: '射手座', en: 'Sagittarius', icon: '♐' },
+  { ja: '山羊座', en: 'Capricorn',   icon: '♑' },
+  { ja: '水瓶座', en: 'Aquarius',    icon: '♒' },
+  { ja: '魚座',   en: 'Pisces',      icon: '♓' },
+];
+
+const MESSAGES = {
+  ja: {
+    overall: [
+      '新しい流れがあなたの周りで動き始めています。直感を大切に行動すると吉。',
+      '穏やかなエネルギーに包まれた一日。焦らず自分のペースを守りましょう。',
+      '思いがけない出来事がチャンスに変わる日。柔軟に対応することが大切です。',
+      '自分の気持ちに正直になることで、物事がスムーズに進みます。',
+      '少し立ち止まって、周囲を見渡してみてください。大切なものが見えてきます。',
+      '積み重ねてきた努力が実を結ぶ暗示。自信を持って前に進みましょう。',
+      '人との縁が開運のカギ。積極的にコミュニケーションをとってみて。',
+      '内なる声に耳を傾ける日。静かな環境で自分と向き合う時間を作りましょう。',
+    ],
+    love: [
+      '相手の気持ちを受け取る準備ができています。素直な言葉が心を動かします。',
+      '深い対話があなたの関係をより豊かにします。言葉を選んで伝えましょう。',
+      'ときめきの予感。日常の小さな幸せに目を向けると新たな気づきがあります。',
+      '関係をより深めるなら今がタイミング。一歩踏み出す勇気が大切です。',
+      'ひとりの時間を楽しむことで、自分の本当の望みが見えてきます。',
+      '笑顔がご縁を引き寄せます。明るく過ごすことで素敵な出会いがあるかも。',
+      '相手への思いやりを忘れずに。小さな気遣いが大きな信頼につながります。',
+      'パートナーとの時間を大切にする日。一緒に過ごす何気ない瞬間が宝物に。',
+    ],
+    work: [
+      'アイデアが豊かに湧き出る日。思い切って提案してみましょう。',
+      '細部に注意を向けることが成功の近道。丁寧に取り組むと評価が上がります。',
+      'チームワークが力を発揮します。周囲と協力して進めましょう。',
+      '計画通りに進まなくても焦らないで。臨機応変な対応が好結果を生みます。',
+      '集中力が高まっています。難しい課題に取り組むなら今がベストです。',
+      '新しいスキルを試す良い機会。失敗を恐れずチャレンジしてみましょう。',
+      'コミュニケーションを丁寧に。ひとこと確認するだけでトラブルを防げます。',
+      '積み上げてきた実績が認められる兆し。自信を持って取り組んでください。',
+    ],
+    money: [
+      '計画的な支出を意識すると、後で余裕が生まれます。',
+      '衝動買いに注意。本当に必要かどうかを一呼吸おいて考えましょう。',
+      '小さな節約の積み重ねが力になる日。固定費を見直すのも良いでしょう。',
+      '予想外の臨時収入の暗示。感謝の気持ちを忘れずに。',
+      '投資より貯蓄を優先する日。安定を大切にする判断が吉。',
+      'お金の流れを整理するのに良いタイミング。家計の見直しを始めてみて。',
+      '人への贈り物や食事など、気持ちへの出費は巡り巡って返ってきます。',
+      '収入アップのヒントが身近にあります。アンテナを張っておきましょう。',
+    ],
+  },
+  en: {
+    overall: [
+      'A new flow is beginning to move around you. Trust your intuition and take action.',
+      'A calm and peaceful day unfolds. Take your time and move at your own pace.',
+      'An unexpected event may turn into a great opportunity. Stay flexible and open.',
+      'Being honest with your feelings will help things move forward smoothly.',
+      'Pause for a moment and look around. Something important may come into view.',
+      'The efforts you have built up are about to bear fruit. Move forward with confidence.',
+      'Connection with others is the key to good fortune. Be open to communication.',
+      'A day to listen to your inner voice. Find a quiet moment to reflect on yourself.',
+    ],
+    love: [
+      'You are ready to receive another\'s feelings. Honest words will move their heart.',
+      'Deep conversation will enrich your relationship. Choose your words thoughtfully.',
+      'A sense of excitement is in the air. Notice the small joys of everyday life.',
+      'If you want to deepen your bond, now is the time. Courage to take a step forward matters.',
+      'Enjoying time alone will help you discover what you truly desire.',
+      'Your smile attracts good encounters. Staying cheerful may bring a wonderful meeting.',
+      'Don\'t forget kindness toward others. Small gestures build great trust.',
+      'A day to cherish time with your partner. Ordinary moments become treasures.',
+    ],
+    work: [
+      'Ideas flow freely today. Be bold and share your proposals.',
+      'Attention to detail is the shortcut to success. A careful approach earns recognition.',
+      'Teamwork shines today. Cooperate with those around you to move forward.',
+      'Don\'t worry if things don\'t go as planned. Flexibility will bring good results.',
+      'Your concentration is at its peak. Now is the best time to tackle difficult tasks.',
+      'A great chance to try new skills. Challenge yourself without fear of failure.',
+      'Communicate carefully. A single confirmation can prevent potential trouble.',
+      'A sign that your accomplishments will be recognized. Proceed with confidence.',
+    ],
+    money: [
+      'Being mindful of planned spending will create financial room later.',
+      'Watch out for impulse buying. Take a breath before deciding if it\'s truly needed.',
+      'Small savings add up to great power. Reviewing fixed costs is also a good idea.',
+      'A hint of unexpected income. Remember to stay grateful.',
+      'Prioritize saving over investing today. A stable approach brings good fortune.',
+      'A good time to organize your finances. Consider reviewing your household budget.',
+      'Spending on gifts or meals for others comes back around in kind.',
+      'Hints for increasing income are nearby. Keep your antenna up.',
+    ],
+  },
 };
 
-const MESSAGES = [
-  '✨ 今日は新しいことに挑戦するのに最適な日です。直感を信じて、一歩踏み出してみましょう！',
-  '🌸 周囲の人との絆が深まる一日です。感謝の気持ちを言葉にすると、良い関係が築けるでしょう。',
-  '🌿 少し立ち止まって、自分自身を見つめ直す時間を作りましょう。焦らずに進めることが大切です。',
-  '🌟 思いがけない出会いやチャンスが訪れるかもしれません。アンテナを高く張っておきましょう！',
-  '🌈 コツコツと積み重ねてきた努力が実を結ぶ予感があります。自分を信じて進みましょう。',
-  '☁️ 今日は無理せず、自分のペースを大切にしてください。休息も大きな前進につながります。',
-  '💡 クリエイティブなアイデアが次々と浮かぶ日です。メモを取りながら行動に移していきましょう！',
-  '👂 人の話をよく聞くことで、大切なヒントが得られます。傾聴の姿勢を心がけてみてください。',
-  '📋 計画をしっかり立てることで、物事がスムーズに進みます。段取り上手な一日になりそうです。',
-  '🕊️ 感情の波が穏やかで、冷静な判断ができる日です。重要な決断をするのに向いています。',
-  '🤝 誰かを助けることで、自分にも幸運が舞い込んでくる日です。積極的に手を差し伸べましょう。',
-  '🍀 小さなことに喜びを見つけてみてください。日常の中に幸せのヒントが隠れています。',
-];
+const LUCKY_COLORS = {
+  ja: ['ホワイト', 'ベージュ', 'スカイブルー', 'ラベンダー', 'ミントグリーン',
+       'コーラルピンク', 'ゴールド', 'ネイビー', 'テラコッタ', 'シルバー',
+       'オリーブ', 'ライラック', 'アイボリー', 'チャコール', 'パウダーブルー'],
+  en: ['White', 'Beige', 'Sky Blue', 'Lavender', 'Mint Green',
+       'Coral Pink', 'Gold', 'Navy', 'Terracotta', 'Silver',
+       'Olive', 'Lilac', 'Ivory', 'Charcoal', 'Powder Blue'],
+};
 
-const LOVE_MESSAGES = [
-  '💬 素直な気持ちを伝えることで、関係が一歩進みそうです。',
-  '💞 相手の言葉をしっかり受け止めると、心の距離が縮まります。',
-  '🌺 焦らず自然体でいることが、魅力を引き出すカギです。',
-  '🎊 偶然の出会いが、特別な縁につながるかもしれません。',
-  '🕯️ 二人の時間を大切にすると、絆がより深まるでしょう。',
-  '💅 自分を磨くことへの意欲が、恋愛運を高めてくれます。',
-  '🌷 少し勇気を出して、気持ちを行動で示してみましょう。',
-  '☺️ 穏やかな雰囲気が、相手に安心感を与える日です。',
-  '🌱 過去のことは手放して、新しい気持ちで向き合いましょう。',
-  '✨ 心のゆとりが、素敵な出会いを引き寄せてくれます。',
-];
+const I18N = {
+  ja: {
+    title:       '今日の星座占い',
+    selectLabel: '星座を選んでください',
+    overall:     '総合',
+    love:        '恋愛',
+    work:        '仕事',
+    money:       '金運',
+    luckyLabel:  'ラッキーカラー：',
+  },
+  en: {
+    title:       "Today's Horoscope",
+    selectLabel: 'Choose your sign',
+    overall:     'Overall',
+    love:        'Love',
+    work:        'Work',
+    money:       'Fortune',
+    luckyLabel:  'Lucky Color: ',
+  },
+};
 
-const WORK_MESSAGES = [
-  '🤝 チームとの連携を意識すると、仕事が円滑に進みます。',
-  '🔍 細かいことにも丁寧に取り組む姿勢が評価されそうです。',
-  '💡 新しいアイデアを積極的に提案するのに良いタイミングです。',
-  '📌 優先順位を整理することで、効率がぐっと上がります。',
-  '💬 困ったときは一人で抱え込まず、周囲に相談しましょう。',
-  '🌟 地道な努力が実を結ぶ日です。自分を信じて進んで！',
-  '🎯 集中力が高まる日。重要な作業を今日中に片付けましょう。',
-  '🌿 コミュニケーションを丁寧にとることで、信頼が深まります。',
-  '🚀 新しいスキルへの挑戦が、将来の可能性を広げてくれます。',
-  '💪 今日の頑張りが、明日の自信につながっていきます。',
-];
+// --- State ---
+let currentLang = 'ja';
+let currentSignIndex = null;
 
-const MONEY_MESSAGES = [
-  '🛍️ 衝動買いは控えめに。本当に必要なものを見極めて。',
-  '🪙 小さな節約の積み重ねが、大きな実りになります。',
-  '💰 思わぬ臨時収入の予感！ただし使い道は慎重に。',
-  '🔭 長期的な視点でお金を考えると、安心感が生まれます。',
-  '📒 今日の出費は記録しておくと、後で役立ちます。',
-  '🏦 投資よりも貯蓄を優先するのが吉の日です。',
-  '🍽️ 友人との食事など、心の豊かさへの出費は◎。',
-  '🌱 価値あるものへの出費は惜しまないで。未来への投資です。',
-  '📊 家計の見直しをするのに良いタイミングです。',
-  '🌊 お金の流れを整えることで、運気も整ってきます。',
-];
-
-const COLORS = ['ホワイト', 'ベージュ', 'ライトブルー', 'ラベンダー', 'ミントグリーン', 'コーラルピンク', 'ゴールド', 'シルバー', 'テラコッタ', 'ネイビー', 'スカイブルー', 'チャコール'];
-
-// 日付ベースのシード生成（同じ日・同じ星座なら同じ結果）
-function seedRandom(sign, date) {
-  const str = sign + date;
-  let h = 2166136261;
-  for (let i = 0; i < str.length; i++) {
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
+// --- Seeded random (date + sign index) ---
+function seededRand(seed) {
+  let s = seed;
   return function () {
-    h ^= h << 13;
-    h ^= h >> 17;
-    h ^= h << 5;
-    return (h >>> 0) / 4294967296;
+    s = (s * 1664525 + 1013904223) & 0xffffffff;
+    return (s >>> 0) / 0xffffffff;
   };
 }
 
-function randInt(rng, min, max) {
-  return min + Math.floor(rng() * (max - min + 1));
+function getDailySeed(signIndex) {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate() + signIndex * 997;
 }
 
-function renderStars(score) {
-  return '★'.repeat(score) + '☆'.repeat(5 - score);
+function pickRandom(arr, rand) {
+  return arr[Math.floor(rand() * arr.length)];
 }
 
-function formatDate(d) {
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+function starsHTML(count) {
+  return '★'.repeat(count) + '☆'.repeat(5 - count);
 }
 
-// 今日の日付を表示
-const today = new Date();
-const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-document.getElementById('today').textContent = formatDate(today);
+function getStarCount(rand) {
+  const r = rand();
+  if (r < 0.1) return 2;
+  if (r < 0.3) return 3;
+  if (r < 0.7) return 4;
+  return 5;
+}
 
-// ボタンのクリック処理
-document.querySelectorAll('.sign-btn').forEach(btn => {
+// --- Date format ---
+function formatDate(d, lang) {
+  if (lang === 'en') {
+    const months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    return `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  }
+  const week = ['日', '月', '火', '水', '木', '金', '土'];
+  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日（${week[d.getDay()]}）`;
+}
+
+// --- Language switch ---
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+
+  // Toggle button states
+  document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  // Update page title
+  document.getElementById('page-title').textContent = I18N[lang].title;
+
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (I18N[lang][key]) el.textContent = I18N[lang][key];
+  });
+
+  // Update date
+  document.getElementById('today-date').textContent = formatDate(new Date(), lang);
+
+  // Update sign button labels
+  document.querySelectorAll('.sign-btn').forEach(btn => {
+    const i = parseInt(btn.dataset.index, 10);
+    btn.querySelector('.btn-name').textContent = SIGNS[i][lang];
+  });
+
+  // Re-render result if a sign is selected
+  if (currentSignIndex !== null) renderResult(currentSignIndex);
+}
+
+// --- Sign buttons ---
+const grid = document.getElementById('sign-grid');
+SIGNS.forEach((sign, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'sign-btn';
+  btn.dataset.index = i;
+  btn.innerHTML = `<span class="btn-icon">${sign.icon}</span><span class="btn-name">${sign[currentLang]}</span>`;
   btn.addEventListener('click', () => {
     document.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    showFortune(btn.dataset.sign);
+    currentSignIndex = i;
+    renderResult(i);
   });
+  grid.appendChild(btn);
 });
 
-function showFortune(sign) {
-  const rng = seedRandom(sign, dateStr);
+// --- Render result ---
+function renderResult(index) {
+  const sign = SIGNS[index];
+  const rand = seededRand(getDailySeed(index));
+  const msgs = MESSAGES[currentLang];
+  const colors = LUCKY_COLORS[currentLang];
 
-  const overall = randInt(rng, 2, 5);
-  const love    = randInt(rng, 1, 5);
-  const work    = randInt(rng, 1, 5);
-  const money   = randInt(rng, 1, 5);
-  const msgIdx      = Math.floor(rng() * MESSAGES.length);
-  const loveMsgIdx  = Math.floor(rng() * LOVE_MESSAGES.length);
-  const workMsgIdx  = Math.floor(rng() * WORK_MESSAGES.length);
-  const moneyMsgIdx = Math.floor(rng() * MONEY_MESSAGES.length);
-  const colorIdx    = Math.floor(rng() * COLORS.length);
-  const luckyNum    = randInt(rng, 1, 99);
+  document.getElementById('result-icon').textContent = sign.icon;
+  document.getElementById('result-sign-name').textContent = sign[currentLang];
 
-  document.getElementById('result-sign').textContent = SIGNS[sign];
-  document.getElementById('result-date').textContent = formatDate(today);
-  document.getElementById('overall-stars').textContent = renderStars(overall);
-  document.getElementById('overall-message').textContent = MESSAGES[msgIdx];
-  document.getElementById('love-stars').textContent = renderStars(love);
-  document.getElementById('love-message').textContent = LOVE_MESSAGES[loveMsgIdx];
-  document.getElementById('work-stars').textContent = renderStars(work);
-  document.getElementById('work-message').textContent = WORK_MESSAGES[workMsgIdx];
-  document.getElementById('money-stars').textContent = renderStars(money);
-  document.getElementById('money-message').textContent = MONEY_MESSAGES[moneyMsgIdx];
-  document.getElementById('lucky-color').textContent = COLORS[colorIdx];
-  document.getElementById('lucky-number').textContent = luckyNum;
+  const categories = [
+    { stars: 'stars-overall', text: 'text-overall', key: 'overall' },
+    { stars: 'stars-love',    text: 'text-love',    key: 'love' },
+    { stars: 'stars-work',    text: 'text-work',    key: 'work' },
+    { stars: 'stars-money',   text: 'text-money',   key: 'money' },
+  ];
+
+  categories.forEach(({ stars, text, key }) => {
+    document.getElementById(stars).textContent = starsHTML(getStarCount(rand));
+    document.getElementById(text).textContent = pickRandom(msgs[key], rand);
+  });
+
+  document.getElementById('lucky-color').textContent = pickRandom(colors, rand);
 
   const result = document.getElementById('result');
   result.hidden = false;
-  result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  result.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// --- Init ---
+document.getElementById('today-date').textContent = formatDate(new Date(), currentLang);

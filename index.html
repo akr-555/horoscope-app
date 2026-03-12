@@ -3,65 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>今日の星座占い</title>
+  <title id="page-title">今日の星座占い</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn active" id="btn-ja" onclick="setLang('ja')">日本語</button>
+    </div>
+
     <header>
-      <h1>🔮 今日の星座占い ✨</h1>
-      <p class="date" id="today"></p>
+      <h1 data-i18n="title">今日の星座占い</h1>
+      <p class="date" id="today-date"></p>
     </header>
 
-    <section class="sign-grid">
-      <button class="sign-btn" data-sign="aries">♈ 牡羊座</button>
-      <button class="sign-btn" data-sign="taurus">♉ 牡牛座</button>
-      <button class="sign-btn" data-sign="gemini">♊ 双子座</button>
-      <button class="sign-btn" data-sign="cancer">♋ 蟹座</button>
-      <button class="sign-btn" data-sign="leo">♌ 獅子座</button>
-      <button class="sign-btn" data-sign="virgo">♍ 乙女座</button>
-      <button class="sign-btn" data-sign="libra">♎ 天秤座</button>
-      <button class="sign-btn" data-sign="scorpio">♏ 蠍座</button>
-      <button class="sign-btn" data-sign="sagittarius">♐ 射手座</button>
-      <button class="sign-btn" data-sign="capricorn">♑ 山羊座</button>
-      <button class="sign-btn" data-sign="aquarius">♒ 水瓶座</button>
-      <button class="sign-btn" data-sign="pisces">♓ 魚座</button>
+    <section class="sign-selector">
+      <p class="label" data-i18n="selectLabel">星座を選んでください</p>
+      <div class="sign-grid" id="sign-grid"></div>
     </section>
 
     <section class="result" id="result" hidden>
       <div class="result-header">
-        <span class="result-sign" id="result-sign"></span>
-        <span class="result-date" id="result-date"></span>
+        <span class="result-sign-icon" id="result-icon"></span>
+        <h2 id="result-sign-name"></h2>
       </div>
-
-      <div class="overall">
-        <div class="overall-label">総合運</div>
-        <div class="stars" id="overall-stars"></div>
-        <p class="overall-message" id="overall-message"></p>
-      </div>
-
-      <div class="categories">
-        <div class="category">
-          <div class="category-label">恋愛運</div>
-          <div class="stars" id="love-stars"></div>
-          <p class="category-message" id="love-message"></p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-label" data-i18n="overall">総合</div>
+          <div class="stars" id="stars-overall"></div>
+          <p class="card-text" id="text-overall"></p>
         </div>
-        <div class="category">
-          <div class="category-label">仕事運</div>
-          <div class="stars" id="work-stars"></div>
-          <p class="category-message" id="work-message"></p>
+        <div class="card">
+          <div class="card-label" data-i18n="love">恋愛</div>
+          <div class="stars" id="stars-love"></div>
+          <p class="card-text" id="text-love"></p>
         </div>
-        <div class="category">
-          <div class="category-label">金運</div>
-          <div class="stars" id="money-stars"></div>
-          <p class="category-message" id="money-message"></p>
+        <div class="card">
+          <div class="card-label" data-i18n="work">仕事</div>
+          <div class="stars" id="stars-work"></div>
+          <p class="card-text" id="text-work"></p>
+        </div>
+        <div class="card">
+          <div class="card-label" data-i18n="money">金運</div>
+          <div class="stars" id="stars-money"></div>
+          <p class="card-text" id="text-money"></p>
         </div>
       </div>
-
-      <div class="lucky">
-        <span>ラッキーカラー：<strong id="lucky-color"></strong></span>
-        <span>ラッキーナンバー：<strong id="lucky-number"></strong></span>
-      </div>
+      <p class="lucky"><span data-i18n="luckyLabel">ラッキーカラー：</span><span id="lucky-color"></span></p>
     </section>
   </div>
 
