@@ -13,62 +13,73 @@
       <p class="date" id="today-date"></p>
     </header>
 
-    <section class="sign-selector">
+    <!-- Page: top -->
+    <section id="page-top" class="page">
       <p class="label">💫 星座を選んでね 💫</p>
       <div class="sign-grid" id="sign-grid"></div>
     </section>
 
-    <section class="result" id="result" hidden>
-      <div class="result-header">
-        <span class="result-emoji" id="result-emoji"></span>
-        <div>
-          <h2 id="result-sign-name"></h2>
-          <p class="result-sub">今日の運勢</p>
-        </div>
+    <!-- Page: 総合運 -->
+    <section id="page-overall" class="page" hidden>
+      <div class="fortune-title-block">
+        <h2 class="fortune-title" id="overall-title"></h2>
+        <p class="lucky-inline">
+          <span>🍀 ラッキーカラー：<span id="lucky-color"></span></span>
+          <span>🔢 ラッキーナンバー：<span id="lucky-number"></span></span>
+        </p>
       </div>
+      <div class="fortune-card card-overall">
+        <div class="stars" id="stars-overall"></div>
+        <p class="fortune-text" id="text-overall"></p>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn back-btn" id="overall-back">← 戻る</button>
+        <button class="nav-btn next-btn" id="overall-next">次へ →</button>
+      </div>
+    </section>
 
-      <div class="cards">
-        <div class="card card-overall">
-          <div class="card-top">
-            <span class="card-emoji">🌟</span>
-            <span class="card-label">総合運</span>
-          </div>
-          <div class="stars" id="stars-overall"></div>
-          <p class="card-text" id="text-overall"></p>
-        </div>
-        <div class="card card-love">
-          <div class="card-top">
-            <span class="card-emoji">💕</span>
-            <span class="card-label">恋愛運</span>
-          </div>
-          <div class="stars" id="stars-love"></div>
-          <p class="card-text" id="text-love"></p>
-        </div>
-        <div class="card card-work">
-          <div class="card-top">
-            <span class="card-emoji">💼</span>
-            <span class="card-label">仕事運</span>
-          </div>
-          <div class="stars" id="stars-work"></div>
-          <p class="card-text" id="text-work"></p>
-        </div>
-        <div class="card card-money">
-          <div class="card-top">
-            <span class="card-emoji">🍀</span>
-            <span class="card-label">金運</span>
-          </div>
-          <div class="stars" id="stars-money"></div>
-          <p class="card-text" id="text-money"></p>
-        </div>
+    <!-- Page: 恋愛運 -->
+    <section id="page-love" class="page" hidden>
+      <div class="fortune-title-block">
+        <h2 class="fortune-title" id="love-title"></h2>
       </div>
+      <div class="fortune-card card-love">
+        <div class="stars" id="stars-love"></div>
+        <p class="fortune-text" id="text-love"></p>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn back-btn" id="love-back">← 戻る</button>
+        <button class="nav-btn next-btn" id="love-next">次へ →</button>
+      </div>
+    </section>
 
-      <div class="lucky-box">
-        <span class="lucky-title">🌈 ラッキーカラー</span>
-        <span class="lucky-value" id="lucky-color"></span>
+    <!-- Page: 仕事運 -->
+    <section id="page-work" class="page" hidden>
+      <div class="fortune-title-block">
+        <h2 class="fortune-title" id="work-title"></h2>
       </div>
-      <div class="lucky-box">
-        <span class="lucky-title">🔢 ラッキーナンバー</span>
-        <span class="lucky-value" id="lucky-number"></span>
+      <div class="fortune-card card-work">
+        <div class="stars" id="stars-work"></div>
+        <p class="fortune-text" id="text-work"></p>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn back-btn" id="work-back">← 戻る</button>
+        <button class="nav-btn next-btn" id="work-next">次へ →</button>
+      </div>
+    </section>
+
+    <!-- Page: 金運 -->
+    <section id="page-money" class="page" hidden>
+      <div class="fortune-title-block">
+        <h2 class="fortune-title" id="money-title"></h2>
+      </div>
+      <div class="fortune-card card-money">
+        <div class="stars" id="stars-money"></div>
+        <p class="fortune-text" id="text-money"></p>
+      </div>
+      <div class="nav-buttons">
+        <button class="nav-btn back-btn" id="money-back">← 戻る</button>
+        <button class="nav-btn next-btn next-btn-top" id="money-next">🏠 トップへ</button>
       </div>
     </section>
   </div>
