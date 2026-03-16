@@ -26,6 +26,36 @@
 
     <!-- Page: top -->
     <section id="page-top" class="page">
+
+      <!-- PWAインストールバナー -->
+      <div id="install-banner" class="install-banner" hidden>
+        <span class="install-banner-icon">📲</span>
+        <span class="install-banner-text" id="install-banner-text">ホーム画面に追加できるよ！</span>
+        <button id="install-btn" class="install-btn">追加する</button>
+        <button id="install-close" class="install-close" aria-label="閉じる">✕</button>
+      </div>
+
+      <!-- iOSインストール手順ポップアップ -->
+      <div id="ios-popup-overlay" class="ios-popup-overlay" hidden></div>
+      <div id="ios-popup" class="ios-popup" hidden>
+        <button id="ios-popup-close" class="ios-popup-close" aria-label="閉じる">✕</button>
+        <p class="ios-popup-title">📲 ホーム画面への追加方法</p>
+        <ul class="ios-steps">
+          <li>
+            <span class="step-num">1</span>
+            <span class="step-body">画面下部の <strong>共有ボタン</strong> をタップ<br><span class="step-sub">「⬆️」のマークのボタンです</span></span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span class="step-body">メニューをスクロールして<br><strong>「ホーム画面に追加」</strong> をタップ<br><span class="step-sub">「＋」マークのアイコンが目印です</span></span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span class="step-body">右上の <strong>「追加」</strong> をタップして完了！<br><span class="step-sub">アプリのように起動できるよ🌟</span></span>
+          </li>
+        </ul>
+      </div>
+
       <p class="label">💫 星座を選んでね 💫</p>
       <div class="sign-grid" id="sign-grid"></div>
     </section>

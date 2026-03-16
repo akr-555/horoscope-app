@@ -161,6 +161,71 @@ function showFortune(signIndex) {
   showPage('page-overall');
 }
 
+// ── PWAインストールバナー ──
+(function () {
+  // すでにスタンドアロン（インストール済み）なら何もしない
+  const isStandalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    navigator.standalone === true;
+  if (isStandalone) return;
+
+  // セッション内で閉じたら再表示しない
+  if (sessionStorage.getItem('installBannerDismissed')) return;
+
+  const banner      = document.getElementById('install-banner');
+  const installBtn  = document.getElementById('install-btn');
+  const closeBtn    = document.getElementById('install-close');
+
+  const overlay     = document.getElementById('ios-popup-overlay');
+  const popup       = document.getElementById('ios-popup');
+  const popupClose  = document.getElementById('ios-popup-close');
+
+  function showBanner() { banner.hidden = false; }
+  function hideBanner() {
+    banner.hidden = true;
+    sessionStorage.setItem('installBannerDismissed', '1');
+  }
+
+  function openIosPopup() {
+    overlay.hidden = false;
+    popup.hidden   = false;
+  }
+  function closeIosPopup() {
+    overlay.hidden = true;
+    popup.hidden   = true;
+  }
+
+  closeBtn.addEventListener('click', hideBanner);
+  overlay.addEventListener('click', closeIosPopup);
+  popupClose.addEventListener('click', closeIosPopup);
+
+  // ── Android (beforeinstallprompt) ──
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    showBanner();
+
+    installBtn.addEventListener('click', async () => {
+      hideBanner();
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    });
+  });
+
+  // ── iOS ──
+  const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  if (isIos) {
+    document.getElementById('install-banner-text').textContent =
+      'ホーム画面に追加してアプリとして使えるよ！';
+    installBtn.textContent = '追加方法を見る';
+    showBanner();
+
+    installBtn.addEventListener('click', openIosPopup);
+  }
+})();
+
 // 日付表示
 document.getElementById('today-date').textContent = formatDate(new Date());
 
